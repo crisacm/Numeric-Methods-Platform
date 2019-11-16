@@ -1,0 +1,139 @@
+body {
+    font: 'Roboto', sans-serif;
+    background-color: #F2F4F4;
+    height: 100%;
+    width: 100%;
+}
+.title {
+    margin: 12px 12px 12px 12px;
+    display: none;
+}
+.column-navbar {
+    padding: 0;
+    margin: 0;
+}
+.container-navbar {
+    margin: 12px 12px 24px 24px;
+}
+.nav-link {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.2);
+    margin: 4px 0;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s all;
+    width: 100%;
+}
+
+.btn-inicio {
+    border: 2px solid #85929E;
+    color: #85929E;
+}
+.btn-inicio:hover {
+    background-color: #85929E;
+    color: white;
+}
+.btn-inicio-active {
+    background-color: #85929E;
+    border: 2px solid transparent;
+    color: white;
+}
+.btn-inicio-active:hover {
+    background-color: white;
+    border: 2px solid #85929E;
+    color: #85929E;
+}
+
+.btn-biseccion {
+    border: 2px solid #48C9B0;
+    color: #48C9B0;
+}
+.btn-biseccion:hover {
+    background: #48C9B0;
+    color: white;
+}
+.btn-biseccion-active {
+    background-color: #48C9B0;
+    border: 2px solid transparent;
+    color: white;
+}
+.btn-biseccion-active:hover {
+    background-color: white;
+    border: 2px solid #48C9B0;
+    color: #48C9B0;
+}
+
+.btn-regla-falsa {
+    border: 2px solid #BB8FCE;
+    color: #BB8FCE;
+}
+.btn-regla-falsa:hover {
+    background-color: #BB8FCE;
+    color: white;
+}
+.btn-regla-falsa-active {
+    background-color: #BB8FCE;
+    border: 2px solid transparent;
+    color: white;
+}
+.btn-regla-falsa-active:hover {
+    background-color: white;
+    border: 2px solid #BB8FCE;
+    color: #BB8FCE;
+}
+
+.btn-newton-rapshon {
+    border: 2px solid #F1948A;
+    color: #F1948A;
+}
+.btn-newton-rapshon:hover {
+    background-color: #F1948A;
+    color: white;
+}
+.btn-newton-rapshon-active {
+    background-color: #F1948A;
+    border: 2px solid transparent;
+    color: white;
+}
+.btn-newton-rapshon-active:hover {
+    background-color: white;
+    border: 2px solid #F1948A;
+    color: #F1948A;
+}
+
+.btn-secante {
+    border: 2px solid #7FB3D5;
+    color: #7FB3D5;
+}
+.btn-secante:hover {
+    background-color: #7FB3D5;
+    color: white;
+}
+.btn-secante-active {
+    background-color: #7FB3D5;
+    border: 2px solid transparent;
+    color: white;
+}
+.btn-secante-active:hover {
+    background-color: white;
+    border: 2px solid #7FB3D5;
+    color: #7FB3D5;
+}
+
+.separador {
+    color: #566573;
+    margin: 8px 12px;
+}
+.separador-linea {
+    background-color: #ABB2B9;
+    margin: 20px 12px 0 0;
+}
+.column-body {
+    background-color: white;
+    border: 1px solid #CCD1D1;
+    border-radius: 4px;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.2);
+    margin: 12px 24px 24px 12px;
+}
