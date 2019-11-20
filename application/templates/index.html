@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Métodos Numéricos</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+        <script src="{{ url_for('static', filename='js/functions.js') }}"></script>
+    </head>
+    <body onload="tabClear(); document.getElementById('btn-biseccion').click()">
+        <div class="container">
+            <h1 class="title">Solució de métodos numéricos</h1>
+            <div class="row">
+                <div class="column-navbar col col-lg-3">
+                    <div class="container-navbar">
+                        <ul class=" nav flex-column">
+                            <li class="nav-item">
+                                <button id="btn-inicio" class="nav-link btn-inicio" onclick="tabController(event, 'inicio')">Inicio</button>
+                            </li>
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="separador">Métodos</p>
+                                </div>
+                                <div class="col">
+                                    <hr class="separador-linea">
+                                </div>
+                            </div>
+                            <li class="nav-item">
+                                <button id="btn-biseccion" class="nav-link btn-biseccion" onclick="tabController(event, 'biseccion')">Bisección</button>
+                            </li>
+                            <li class="nav-item">
+                                <button id="btn-regla-falsa" class="nav-link btn-regla-falsa" onclick="tabController(event, 'regla-falsa')">Regla Falsa</button>
+                            </li>
+                            <li class="nav-item">
+                                <button id="btn-newton-rapshon" class="nav-link btn-newton-rapshon" onclick="tabController(event, 'newton-rapshon')">Newton Rapshon</button>
+                            </li>
+                            <li class="nav-item">
+                                <button id="btn-secante" class="nav-link btn-secante" onclick="tabController(event, 'secante')">La Secante</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column-body col">
+                    <div id="inicio" class="tab-content">
+                        <h3>Inicio</h3>
+                    </div>
+
+                    <div id="biseccion" class="tab-content content-biseccion">
+                        <h3>Solución del Método de Bisección</h3>
+                        <div class="input-group flew-nowrap">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="addon-wrapping">Ecuación a evaluar</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="2 * x + 2" aria-describedby="addon-wrapping">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button" id="button-addon2">Ayuda</button>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-4">
+                                <div class="input-group flew-nowrap">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-wrapping">Valor de [a]</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-describedby="addon-wrapping">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group flew-nowrap">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-wrapping">Valor de [b]</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-describedby="addon-wrapping">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-biseccion-table mt-3">
+                            <table class="table table-bordered table-sm table-responsive-sm">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">i</th>
+                                        <th scope="col">a</th>
+                                        <th scope="col">b</th>
+                                        <th scope="col">F(a)</th>
+                                        <th scope="col">F(b)</th>
+                                        <th scope="col">Xi</th>
+                                        <th scope="col">F(Xi)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="table-info">-</th>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="regla-falsa" class="tab-content">
+                        <h3>Regla Falsa</h3>
+                    </div>
+
+                    <div id="newton-rapshon" class="tab-content">
+                        <h3>Newton Rapshon</h3>
+                    </div>
+
+                    <div id="secante" class="tab-content">
+                        <h3>La Secante</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,4 +1,4 @@
-function tabController(evt, tabName) {
+function tabClear() {
     var i, tabContents, navButtons;
     tabContents = document.getElementsByClassName("tab-content");
     for (i = 0; i < tabContents.length; i++) {
@@ -8,6 +8,10 @@ function tabController(evt, tabName) {
     for (i = 0; i < navButtons.length; i++) {
         navButtons[i].className = navButtons[i].className.replace("-active", "");
     }
+}
+
+function tabController(evt, tabName) {
+    tabClear()
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += "-active";
 }
