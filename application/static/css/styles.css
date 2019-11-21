@@ -25,8 +25,6 @@ table {
 
 .nav-link {
     background-color: transparent;
-    border-radius: 4px;
-    /* box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 1); */
     margin: 4px 0;
     padding: 8px 12px;
     text-align: center;
@@ -36,7 +34,7 @@ table {
 }
 
 .btn-inicio {
-    border: 2px solid #85929E;
+    border: 1px solid #85929E;
     color: #85929E;
 }
 .btn-inicio:hover {
@@ -44,93 +42,94 @@ table {
     color: white;
 }
 .btn-inicio-active {
-    background-color: #85929E;
-    border: 2px solid transparent;
+    border-right: 1px solid #85929E;
+    border-left: 12px solid #85929E;
+    border-top: 1px solid #85929E;
+    border-bottom: 1px solid #85929E;
     color: white;
 }
 .btn-inicio-active:hover {
-    background-color: transparent;
-    border: 2px solid #85929E;
+    border: 1px solid #85929E;
     color: #85929E;
 }
 
 .btn-biseccion {
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     color: #85929E;
 }
 .btn-biseccion:hover {
-    border: 2px solid #48C9B0;
+    border: 1px solid #48C9B0;
     color: #48C9B0;
 }
 .btn-biseccion-active {
-    background-color: #1ABC9C;
-    border: 2px solid transparent;
-    box-shadow: 0 0 8px 0 #1ABC9C;
+    border-right: 1px solid #1ABC9C;
+    border-left: 12px solid #1ABC9C;
+    border-top: 1px solid #1ABC9C;
+    border-bottom: 1px solid #1ABC9C;
     color: white;
 }
 .btn-biseccion-active:hover {
-    background-color: transparent;
-    border: 2px solid #1ABC9C;
+    border: 1px solid #1ABC9C;
     color: #1ABC9C;
 }
 
 .btn-regla-falsa {
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     color: #85929E;
 }
 .btn-regla-falsa:hover {
-    border: 2px solid #BB8FCE;
+    border: 1px solid #BB8FCE;
     color: #BB8FCE;
 }
 .btn-regla-falsa-active {
-    background-color: #BB8FCE;
-    border: 2px solid transparent;
-    box-shadow: 0 0 8px 0 #BB8FCE;
+    border-right: 1px solid #BB8FCE;
+    border-left: 12px solid #BB8FCE;
+    border-top: 1px solid #BB8FCE;
+    border-bottom: 1px solid #BB8FCE;
     color: white;
 }
 .btn-regla-falsa-active:hover {
-    background-color: transparent;
-    border: 2px solid #BB8FCE;
+    border: 1px solid #BB8FCE;
     color: #BB8FCE;
 }
 
 .btn-newton-rapshon {
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     color: #85929E;
 }
 .btn-newton-rapshon:hover {
-    border: 2px solid #F1948A;
+    border: 1px solid #F1948A;
     color: #F1948A;
 }
 .btn-newton-rapshon-active {
-    background-color: #F1948A;
-    border: 2px solid transparent;
-    box-shadow: 0 0 8px 0 #F1948A;
+    border-right: 1px solid #F1948A;
+    border-left: 12px solid #F1948A;
+    border-top: 1px solid #F1948A;
+    border-bottom: 1px solid #F1948A;
     color: white;
 }
 .btn-newton-rapshon-active:hover {
-    background-color: transparent;
-    border: 2px solid #F1948A;
+    border: 1px solid #F1948A;
     color: #F1948A;
 }
 
 .btn-secante {
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     color: #85929E;
 }
 .btn-secante:hover {
-    border: 2px solid #7FB3D5;
+    border: 1px solid #7FB3D5;
     color: #7FB3D5;
 }
 .btn-secante-active {
-    background-color: #7FB3D5;
-    border: 2px solid transparent;
-    box-shadow: 0 0 8px 0 #7FB3D5;
+    border-right: 1px solid #7FB3D5;
+    border-left: 12px solid #7FB3D5;
+    border-top: 1px solid #7FB3D5;
+    border-bottom: 1px solid #7FB3D5;
     color: white;
 }
 .btn-secante-active:hover {
-    background-color: transparent;
-    border: 2px solid #7FB3D5;
+    border: 1px solid #7FB3D5;
     color: #7FB3D5;
 }
 
@@ -161,15 +160,35 @@ table {
 }
 
 /* METODO DE BISECCION -------------------------------------------- */
-#separator-biseccion {
+.separator-biseccion {
     background-color: #48C9B0;
     margin: 12px 0 0 0;
     padding: 0;
 }
-#title-biseccion, #text-solution-biseccion {
+#title-biseccion, .text-solution-biseccion {
     margin: 0;
     padding: 0;
 }
-.content-biseccion-table {
-    padding: 0 0;
+.btn-biseccion-evaluate {
+    background-color: transparent;
+    border-right: 1px solid #3498db;
+    border-left: 12px solid #3498db;
+    border-top: 1px solid #3498db;
+    border-bottom: 1px solid #3498db;
+    color: white;
+    margin: 4px 0;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s all;
+    width: 100%;
+}
+.btn-biseccion-evaluate:hover {
+    border: 1px solid #3498db;
+    color: #3498db;
+}
+.card-biseccion {
+    border: 1px solid #48C9B0;
+    border-radius: 4px;
+    padding: 12px;
 }
