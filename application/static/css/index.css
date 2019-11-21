@@ -160,9 +160,16 @@ table {
     to { opacity: 1; }
 }
 
-.content-biseccion h3 {
+/* METODO DE BISECCION -------------------------------------------- */
+#separator-biseccion {
+    background-color: #48C9B0;
+    margin: 12px 0 0 0;
+    padding: 0;
 }
-
+#title-biseccion, #text-solution-biseccion {
+    margin: 0;
+    padding: 0;
+}
 .content-biseccion-table {
     padding: 0 0;
 }

@@ -6,8 +6,8 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
               crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
-        <script src="{{ url_for('static', filename='js/functions.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
     </head>
     <body onload="tabClear(); document.getElementById('btn-biseccion').click()">
         <div class="container">
@@ -43,37 +43,72 @@
                     </div>
                 </div>
                 <div class="column-body col">
+                    <!-- TAB INICIO -->
                     <div id="inicio" class="tab-content">
                         <h3>Inicio</h3>
                     </div>
 
+                    <!-- TAB BISECCION -->
                     <div id="biseccion" class="tab-content content-biseccion">
-                        <h3>Solución del Método de Bisección</h3>
-                        <div class="input-group flew-nowrap">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="addon-wrapping">Ecuación a evaluar</span>
+                        <div class="row">
+                            <div class="col-7">
+                                <hr id="separator-biseccion">
                             </div>
-                            <input type="text" class="form-control" placeholder="2 * x + 2" aria-describedby="addon-wrapping">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="button" id="button-addon2">Ayuda</button>
+                            <div class="col">
+                                <p id="title-biseccion"></p>Solución del Método de Bisección</p>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-4">
-                                <div class="input-group flew-nowrap">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="addon-wrapping">Valor de [a]</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-describedby="addon-wrapping">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="input-equation">Ingrese la ecuación a evaluar</label>
+                                    <input type="text" class="form-control form-control-sm" id="input-equation" placeholder="">
                                 </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="input-a-value">Ingrese el valor de A</label>
+                                            <input type="number" class="form-control form-control-sm" id="input-a-value" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="input-b-value input-b-value">Ingrese el valor de B</label>
+                                            <input type="number" class="form-control form-control-sm" id="input-b-value" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <label for="input-iterations">Número max. de iteraciones:</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="number" class="form-control form-control-sm" id="input-iterations" value="5">
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-9">
+                                        <label for="input-decimals">Número de decimales a tomar:</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="number" class="form-control form-control-sm" id="input-decimals" value="4">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary mt-4 float-right">Evaluar ecuación</button>
                             </div>
-                            <div class="col-4">
-                                <div class="input-group flew-nowrap">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="addon-wrapping">Valor de [b]</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-describedby="addon-wrapping">
-                                </div>
+                            <div class="col">
+
+                            </div>
+                        </div>
+                        <!--<div class="row mt-3">
+                            <div class="col">
+                                <hr id="separator-biseccion">
+                            </div>
+                            <div class="col-auto">
+                                <p id="text-solution-biseccion">solución</p>
+                            </div>
+                            <div class="col">
+                                <hr id="separator-biseccion">
                             </div>
                         </div>
                         <div class="content-biseccion-table mt-3">
@@ -101,7 +136,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div id="regla-falsa" class="tab-content">
