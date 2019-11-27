@@ -1,0 +1,203 @@
+{% extends "structure.html" %}
+{% block title %} Método de Bisección {% endblock %}
+{% block btn_biseccion %}-active{% endblock %}
+
+{% block content %}
+<div id="biseccion" class="tab-content content-biseccion">
+    <div class="row">
+        <div class="col-7">
+            <hr class="separator-biseccion">
+        </div>
+        <div class="col">
+            <p id="title-biseccion">Solución del Método de Bisección</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form method="POST">
+                <div class="form-group">
+                    <label>Ingrese la función a evaluar</label>
+                    {{ form.functionField(class="form-control form-control-sm") }}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Ingrese el valor de A</label>
+                            {{ form.aValueField(class="form-control form-control-sm", value="0") }}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Ingrese el valor de B</label>
+                            {{ form.bValueField(class="form-control form-control-sm", value="0") }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-9">
+                        <label>Número max. de iteraciones:</label>
+                    </div>
+                    <div class="col-3">
+                        {{ form.iterationsField(class="form-control form-control-sm", value="5") }}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-9">
+                        <label>Número de decimales a tomar:</label>
+                    </div>
+                    <div class="col-3">
+                        {{ form.maxDecimalsField(class="form-control form-control-sm", value="2") }}
+                    </div>
+                </div>
+                {{ form.evaluateButton(class="btn-biseccion-evaluate mt-3") }}
+            </form>
+        </div>
+        <div class="col">
+            <div class="card-biseccion">
+                <p>Si necesitas ayuda con la función
+                    <a href="#" data-toggle="modal" data-target="#exampleModal">haz click aquí</a> 
+                    para ver la sintaxis que se utiliza para que las funciones ingresadas sean válidas.</p>
+                <p>Recuerda que la función general para calcular el valor de Xi es: $$ x_i = \frac{a + b}{2} $$ </p>
+                <p>Aquí hay un <a href="#">ejemplo</a> del Método de Bisección que te puede servir de referencia, 
+                    la función utilizada en el ejemplo es:</p>
+                <p>$$ F(x) = \sqrt{8x} + 3x - e^{x} $$</p>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row mt-3">
+        <div class="col">
+            <hr class="separator-biseccion">
+        </div>
+        <div class="col-auto">
+            <p class="text-solution-biseccion">solución</p>
+        </div>
+        <div class="col">
+            <hr class="separator-biseccion">
+        </div>
+    </div>
+    <div class="content-biseccion-table mt-3">
+        <table class="table table-bordered table-sm table-responsive-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">i</th>
+                    <th scope="col">a</th>
+                    <th scope="col">b</th>
+                    <th scope="col">F(a)</th>
+                    <th scope="col">F(b)</th>
+                    <th scope="col">Xi</th>
+                    <th scope="col">F(Xi)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="table-info">-</th>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+</div>
+{% endblock %}
+
+{% block modals %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ayuda: Sintaxis de funciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Estos son los componentes, expresiones y operadores válidos para las funciones:</p>
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="align--middle">Función Teórica</th>
+                                    <th scope="col" class="align-middle">Función válida</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$$ |x| $$</td>
+                                    <td class="align-middle">fabs(x)</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ \sqrt{x} $$</td>
+                                    <td class="align-middle">sqrt(x)</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ e $$</td>
+                                    <td class="align-middle">e</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ \log x $$</td>
+                                    <td class="align-middle">log(x)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col">
+                        <table class="table table-bordered table-sm">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td>$$ \pi $$</td>
+                                    <td class="align-middle">pi</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ \sin{x} $$</td>
+                                    <td class="align-middle">sin(x)</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ \cos{x} $$</td>
+                                    <td class="align-middle">cos(x)</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ \tan{x} $$</td>
+                                    <td class="align-middle">tan(x)</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ x^2 $$</td>
+                                    <td class="align-middle">pow(x, 2)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col">
+                        <table class="table table-bordered table-sm">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td>$$ a + b $$</td>
+                                    <td class="align-middle">a + b</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ a - b $$</td>
+                                    <td class="align-middle">a - b</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ (a)(b) $$</td>
+                                    <td class="align-middle">a * b</td>
+                                </tr>
+                                <tr>
+                                    <td>$$ \cfrac{x}{2} $$</td>
+                                    <td class="align-middle">x / 2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

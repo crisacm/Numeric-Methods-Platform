@@ -1,3 +1,4 @@
-from application import application
+from platform import platform
 
-application.run(debug=True)
+platform.config['SECRET_KEY'] = "1hbd87sbwjV6stB#dj79726$!"
+platform.run(debug=True)
