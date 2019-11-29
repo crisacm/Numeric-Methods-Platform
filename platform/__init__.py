@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, flash
-from platform.modules import biseccion
-from math import sin, cos, tan, fabs, sqrt, log, pi, e, pow
+from platform.modules.biseccion import init
 
 platform = Flask(__name__)
 
@@ -18,11 +17,8 @@ def main():
 @platform.route('/biseccion', methods=['GET', 'POST'])
 def biseccion():
     if request.method == "POST":
-        function = request.form.get('function')
-        if biseccion.validate_function(function):
-            flash('Función valida!', 'success')
-        else:
-            flash('Función invalida!', 'warning')
+        init(request.form['function'], request.form['value-a'], request.form['value-b'],
+             request.form['iterations'], request.form['decimals'])
     return render_template('biseccion.html')
 
 
