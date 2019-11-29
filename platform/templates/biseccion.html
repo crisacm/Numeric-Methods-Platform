@@ -4,6 +4,18 @@
 
 {% block content %}
 <div id="biseccion" class="tab-content content-biseccion">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <div class="row">
         <div class="col-7">
             <hr class="separator-biseccion">
@@ -17,19 +29,19 @@
             <form method="POST">
                 <div class="form-group">
                     <label>Ingrese la función a evaluar</label>
-                    {{ form.functionField(class="form-control form-control-sm") }}
+                    <input class="form-control form-control-sm" type="text" name="function" required>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label>Ingrese el valor de A</label>
-                            {{ form.aValueField(class="form-control form-control-sm", value="0") }}
+                            <input class="form-control form-control-sm" value="0" type="number" name="value-a">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label>Ingrese el valor de B</label>
-                            {{ form.bValueField(class="form-control form-control-sm", value="0") }}
+                            <input class="form-control form-control-sm" value="0" type="number" name="value-b">
                         </div>
                     </div>
                 </div>
@@ -38,7 +50,8 @@
                         <label>Número max. de iteraciones:</label>
                     </div>
                     <div class="col-3">
-                        {{ form.iterationsField(class="form-control form-control-sm", value="5") }}
+                        <input class="form-control form-control-sm" value="5" max="15" min="1" type="number"
+                               name="iterations">
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -46,10 +59,11 @@
                         <label>Número de decimales a tomar:</label>
                     </div>
                     <div class="col-3">
-                        {{ form.maxDecimalsField(class="form-control form-control-sm", value="2") }}
+                        <input class="form-control form-control-sm" value="2" max="12" min="2" type="number"
+                               name="decimals">
                     </div>
                 </div>
-                {{ form.evaluateButton(class="btn-biseccion-evaluate mt-3") }}
+                <button class="btn-biseccion-evaluate mt-3" type="submit">Evaluar función</button>
             </form>
         </div>
         <div class="col">
