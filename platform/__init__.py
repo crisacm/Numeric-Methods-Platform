@@ -1,8 +1,16 @@
 from flask import Flask, render_template, request, flash
-from platform.modules.biseccion import init
+from math import *
 
 platform = Flask(__name__)
 
+
+def validate_function(function, x):
+    try:
+        eval(function)
+        return True
+    except (SyntaxError, ValueError, NameError) as execption:
+        print('[EXCEPTION]:', execption)
+        return False
 
 @platform.errorhandler(404)
 def not_found(error):
@@ -16,10 +24,19 @@ def main():
 
 @platform.route('/biseccion', methods=['GET', 'POST'])
 def biseccion():
+    solve = False
     if request.method == "POST":
-        init(request.form['function'], request.form['value-a'], request.form['value-b'],
-             request.form['iterations'], request.form['decimals'])
-    return render_template('biseccion.html')
+        function = request.form.get('function')
+        if validate_function(function, 0):
+            flash('La función ingresada es válida', 'success')
+            solve = True
+            solve_info = {'function' : function, 'value_a' : request.form.get('value-a'),
+                          'value_b' : request.form.get('value-b'), 'iterations' : request.form.get('iterations'),
+                          'decimals' : request.form.get('decimals')}
+            return render_template('biseccion.html', solve=solve, solve_info=solve_info)
+        else:
+            flash('La función ingresada NO es válida', 'warning')
+            return render_template('biseccion.html')
 
 
 @platform.route('/regla-falsa')

@@ -1,217 +1,188 @@
 {% extends "structure.html" %}
 {% block title %} Método de Bisección {% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/biseccion.css') }}">
+{% endblock %}
 {% block btn_biseccion %}-active{% endblock %}
 
 {% block content %}
 <div id="biseccion" class="tab-content content-biseccion">
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                    <span>{{ message }}</span>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% endfor %}
-        {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+          {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
     {% endwith %}
+
     <div class="row">
-        <div class="col-7">
-            <hr class="separator-biseccion">
-        </div>
         <div class="col">
             <p id="title-biseccion">Solución del Método de Bisección</p>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <form method="POST">
-                <div class="form-group">
-                    <label>Ingrese la función a evaluar</label>
-                    <input class="form-control form-control-sm" type="text" name="function" required>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Ingrese el valor de A</label>
-                            <input class="form-control form-control-sm" type="number" name="value-a" required>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Ingrese el valor de B</label>
-                            <input class="form-control form-control-sm" type="number" name="value-b" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-9">
-                        <label>Número max. de iteraciones:</label>
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control form-control-sm" value="5" max="15" min="1" type="number"
-                               name="iterations">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-9">
-                        <label>Número de decimales a tomar:</label>
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control form-control-sm" value="2" max="12" min="2" type="number"
-                               name="decimals">
-                    </div>
-                </div>
-                <button class="btn-biseccion-evaluate mt-3" type="submit">Evaluar función</button>
-            </form>
+        <div class="col-7">
+            <hr class="separator-biseccion">
         </div>
-        <div class="col">
+    </div>
+    <div class="mt-3">
+        <form method="post">
+            <div class="form-row">
+                <div class="col-8">
+                    <label class="sr-only" for="function">Ingrese la función a evaluar</label>
+                    <input class="form-control form-control-sm mb-2" id="function" type="text" name="function"
+                           placeholder="Function" required>
+                </div>
+                <div class="col">
+                    <label class="sr-only" for="value-a">Ingrese el valor de A</label>
+                    <input class="form-control form-control-sm" id="value-a" type="number" placeholder="Valor de A"
+                           name="value-a" required value="0">
+                </div>
+                <div class="col">
+                    <label class="sr-only" for="value-b">Ingrese el valor de A</label>
+                    <input class="form-control form-control-sm" id="value-b" type="number" placeholder="Valor de B"
+                           name="value-b" required value="1">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label class="" for="iterations">No. iteraciones:</label>
+                    <input class="form-control form-control-sm" id="iterations" value="5" max="15" min="1" type="number"
+                               name="iterations">
+                </div>
+                <div class="col">
+                    <label class="" for="decimals">No. decimales:</label>
+                    <input class="form-control form-control-sm" id="decimals" value="2" max="12" min="2" type="number"
+                               name="decimals">
+                </div>
+                <div class="col"></div>
+                <div class="col-3">
+                    <button class="btn-biseccion-help mt-4 pt-1" type="button" data-toggle="collapse"
+                            data-target="#collapse-help" aria-expanded="false" aria-controls="collapse-help">
+                        ¿Necesitas ayuda?</button>
+                </div>
+                <div class="col">
+                    <button class="btn-biseccion-evaluate mt-4 pt-1" type="submit">Evaluar</button>
+                </div>
+            </div>
+        </form>
+        <div class="collapse mt-3" id="collapse-help">
             <div class="card-biseccion">
-                <p>Si necesitas ayuda con la función
-                    <a href="#" data-toggle="modal" data-target="#exampleModal">haz click aquí</a> 
-                    para ver la sintaxis que se utiliza para que las funciones ingresadas sean válidas.</p>
-                <p>Recuerda que la función general para calcular el valor de Xi es: $$ x_i = \frac{a + b}{2} $$ </p>
-                <p>Aquí hay un <a href="#">ejemplo</a> del Método de Bisección que te puede servir de referencia, 
-                    la función utilizada en el ejemplo es:</p>
-                <p>$$ F(x) = \sqrt{8x} + 3x - e^{x} $$</p>
+                <p>Si necesitas ayuda con la función acontinuación veras la sintaxis que se utiliza para que las
+                    funciones ingresadas sean válidas.</p>
+                <table class="table table-bordered table-sm table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="align--middle">Función Teórica</th>
+                            <th scope="col" class="align-middle">Función válida</th>
+                            <th scope="col" class="align--middle">Función Teórica</th>
+                            <th scope="col" class="align-middle">Función válida</th>
+                            <th scope="col" class="align--middle">Función Teórica</th>
+                            <th scope="col" class="align-middle">Función válida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$$ |x| $$</td>
+                            <td class="align-middle">fabs(x)</td>
+                            <td>$$ \sqrt{x} $$</td>
+                            <td class="align-middle">sqrt(x)</td>
+                            <td>$$ e $$</td>
+                            <td class="align-middle">e</td>
+                        </tr>
+                        <tr>
+                            <td>$$ \log x $$</td>
+                            <td class="align-middle">log(x)</td>
+                            <td>$$ \pi $$</td>
+                            <td class="align-middle">pi</td>
+                            <td>$$ \sin{x} $$</td>
+                            <td class="align-middle">sin(x)</td>
+                        </tr>
+                        <tr>
+                            <td>$$ \cos{x} $$</td>
+                            <td class="align-middle">cos(x)</td>
+                            <td>$$ \tan{x} $$</td>
+                            <td class="align-middle">tan(x)</td>
+                            <td>$$ x^2 $$</td>
+                            <td class="align-middle">pow(x, 2)</td>
+                        </tr>
+                        <tr>
+                            <td>$$ (a)(b) $$</td>
+                            <td class="align-middle">a * b</td>
+                            <td>$$ \cfrac{x}{2} $$</td>
+                            <td class="align-middle">x / 2</td>
+                            <td></td>
+                            <td class="align-middle"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-8">
+                        <p class="mt-4">Recuerda que la función general para calcular el valor de Xi es:</p>
+                    </div>
+                    <div class="col">
+                        $$ x_i = \frac{a + b}{2} $$
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!--<div class="row mt-3">
-        <div class="col">
-            <hr class="separator-biseccion">
+    {% if solve == True%}
+        <div class="row mt-3">
+            <div class="col">
+                <hr class="separator-biseccion">
+            </div>
+            <div class="col-auto">
+                <p class="text-solution-biseccion">solución</p>
+            </div>
+            <div class="col">
+                <hr class="separator-biseccion">
+            </div>
         </div>
-        <div class="col-auto">
-            <p class="text-solution-biseccion">solución</p>
+        <div>
+            <p>La función utilizada es: {{ solve_info['function'] }}</p>
+            <p>Los puntos [A, B] a evaluar son respectivamente [{{ solve_info['value_a'] }},
+                {{ solve_info['value_b'] }}] </p>
+            <p>El número de iteraciones a evaluar son {{ solve_info['iterations'] }} y se tomarán
+                {{ solve_info['decimals'] }} números decimales</p>
         </div>
-        <div class="col">
-            <hr class="separator-biseccion">
+        <div class="content-biseccion-table mt-3">
+            <table class="table table-bordered table-sm table-responsive-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">i</th>
+                        <th scope="col">a</th>
+                        <th scope="col">b</th>
+                        <th scope="col">F(a)</th>
+                        <th scope="col">F(b)</th>
+                        <th scope="col">Xi</th>
+                        <th scope="col">F(Xi)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if solve_data %}
+                        {% for data_row in range(solve_data) %}
+                            <tr>
+                                <th scope="row" class="table-info">-</th>
+                                <td></td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
         </div>
-    </div>
-    <div class="content-biseccion-table mt-3">
-        <table class="table table-bordered table-sm table-responsive-sm">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">i</th>
-                    <th scope="col">a</th>
-                    <th scope="col">b</th>
-                    <th scope="col">F(a)</th>
-                    <th scope="col">F(b)</th>
-                    <th scope="col">Xi</th>
-                    <th scope="col">F(Xi)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row" class="table-info">-</th>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
-</div>
+    {% endif %}
 {% endblock %}
 
 {% block modals %}
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ayuda: Sintaxis de funciones</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Estos son los componentes, expresiones y operadores válidos para las funciones:</p>
-                <div class="row">
-                    <div class="col">
-                        <table class="table table-bordered table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="align--middle">Función Teórica</th>
-                                    <th scope="col" class="align-middle">Función válida</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>$$ |x| $$</td>
-                                    <td class="align-middle">fabs(x)</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ \sqrt{x} $$</td>
-                                    <td class="align-middle">sqrt(x)</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ e $$</td>
-                                    <td class="align-middle">e</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ \log x $$</td>
-                                    <td class="align-middle">log(x)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col">
-                        <table class="table table-bordered table-sm">
-                            <thead></thead>
-                            <tbody>
-                                <tr>
-                                    <td>$$ \pi $$</td>
-                                    <td class="align-middle">pi</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ \sin{x} $$</td>
-                                    <td class="align-middle">sin(x)</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ \cos{x} $$</td>
-                                    <td class="align-middle">cos(x)</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ \tan{x} $$</td>
-                                    <td class="align-middle">tan(x)</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ x^2 $$</td>
-                                    <td class="align-middle">pow(x, 2)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col">
-                        <table class="table table-bordered table-sm">
-                            <thead></thead>
-                            <tbody>
-                                <tr>
-                                    <td>$$ a + b $$</td>
-                                    <td class="align-middle">a + b</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ a - b $$</td>
-                                    <td class="align-middle">a - b</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ (a)(b) $$</td>
-                                    <td class="align-middle">a * b</td>
-                                </tr>
-                                <tr>
-                                    <td>$$ \cfrac{x}{2} $$</td>
-                                    <td class="align-middle">x / 2</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}
