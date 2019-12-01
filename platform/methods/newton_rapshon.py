@@ -2,11 +2,10 @@ from math import *
 from prettytable import PrettyTable
 
 
-class Biseccion:
-    def __init__(self, function, value_a, value_b, iterations, decimals):
+class NewtonRapshon:
+    def __init__(self, function, value_xi, iterations, decimals):
         self.function = function
-        self.value_a = value_a
-        self.value_b = value_b
+        self.value_xi = value_xi
         self.iterations = iterations
         self.decimals = decimals
 
@@ -25,6 +24,13 @@ class Biseccion:
         except (ValueError, NameError) as ex:
             return ex
 
+    def evaluate_xi(self, xi, Fxi, Fdxi):
+        try:
+            function = '(xi) - (Fxi / Fdxi)'
+            return eval(function)
+        except (ValueError, NameError) as ex:
+            return ex
+
     def method(self):
         break_state = 0
         table = PrettyTable(['it', 'A', 'B', 'Fa', 'Fb', 'xi', 'Xi'])
@@ -37,18 +43,16 @@ class Biseccion:
         print('Número de decimales que se tomaran en cuenta: ', self.decimals)
         print('')
         #
-        data = []
         for it in range(self.iterations):
             Fa_tmp = self.evaluate(self.function, self.value_a)
             Fa = round(Fa_tmp, self.decimals)
             Fb_tmp = self.evaluate(self.function, self.value_b)
             Fb = round(Fb_tmp, self.decimals)
-            xi_tmp = (self.value_a + self.value_b) / 2
+            xi_tmp = self.evaluate_xi(Fa, Fb)
             xi = round(xi_tmp, self.decimals)
             Fxi_temp = self.evaluate(self.function, xi)
             Fxi = round(Fxi_temp, self.decimals)
             table.add_row([it, self.value_a, self.value_b, Fa, Fb, xi, Fxi])
-            data.append([it, self.value_a, self.value_b, Fa, Fb, xi, Fxi])
             if Fa > 0 and Fb > 0:
                 break_state = 1
                 break
@@ -73,11 +77,10 @@ class Biseccion:
             print('')
             print('Los valores ingresados o la función no cumplen con los requisitos válidos para la solución del ',
                   'método de la Regla Falsa')
-        return data
 
     def menu(self):
         print('')
-        print('[METODO DE BISECCIÓN]')
+        print('[METODO DE REGLA FALSA]')
         print('')
         print('1. Iniciar con valores ya definidos')
         print('2. Ingresar valores')
@@ -109,5 +112,5 @@ class Biseccion:
             print('> Ingrese una opción válida.')
 
 
-biseccion = Biseccion('2 * x + pow(x, 3) - 10', 1, 2, 5, 2)
-biseccion.menu()
+regla_falsa = ReglaFalsa('pow(x, 2) - 2', 0, 2, 5, 2)
+regla_falsa.menu()
